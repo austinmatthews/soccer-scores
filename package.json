@@ -4,7 +4,7 @@
   "description": "Soccer Score Take Home Coding Challenge",
   "main": "index.js",
   "scripts": {
-    "test": "test",
+    "test": "jest",
     "build": "tsc",
     "start": "node bin/index.js",
     "start:ts-node": "ts-node src/index.ts"
