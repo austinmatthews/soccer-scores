@@ -2,7 +2,7 @@
   "name": "soccer-scores",
   "version": "1.0.0",
   "description": "Soccer Score Take Home Coding Challenge",
-  "main": "index.js",
+  "main": "bin/index.js",
   "scripts": {
     "test": "jest",
     "build": "tsc",
