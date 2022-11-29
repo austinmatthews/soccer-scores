@@ -113,7 +113,7 @@ export function getMatch() {
 }
 
 export function getConstants() {
-  const validMatchRegex = new RegExp("/([a-zA-Z ]+)(\d+),([a-zA-Z ]+)(\d+)/g");
+  const validMatchRegex = new RegExp('([a-zA-Z ]+)(\\d+), ([a-zA-Z ]+)(\\d+)');
 
   return {
     validMatchRegex
