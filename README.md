@@ -27,6 +27,10 @@ Run the script with arguments using the following format:
 
 `npm run start:ts-node -- <filepath>`
 
+Run the script with stdin (pipe or redirect) with the following format or an equivalent command:
+
+`echo <filepath> | npm run start:ts-node`
+
 You may also compile and run separately with the following commands:
 
 To compile: 
@@ -36,10 +40,6 @@ To compile:
 To run: 
 
 `npm run start -- <filepath>`
-
-Run the script with stdin (pipe or redirect) with the following format or an equivalent command:
-
-`echo <filepath> | npm run start:ts-node`
 
 To run tests with the following command:
 
