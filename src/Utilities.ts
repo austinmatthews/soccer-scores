@@ -50,7 +50,6 @@ export function createTeamRankings() {
 
     updateTeamRank(matchResults.teamOneName, teamOneResult);
     updateTeamRank(matchResults.teamTwoName, teamTwoResult);
-
   }
 
   function updateTeamRank(teamName: string, teamResult: number) {
