@@ -11,7 +11,7 @@ export function createMatchDay() {
   }
 
   function endDay() {
-    teamsPlayed = [];
+    return teamsPlayed = [];
   }
 
   return {
@@ -28,7 +28,7 @@ export type LeagueRankings = {
 export function createTeamRankings() {
   const leagueRankings = new Array<LeagueRankings>()
 
-  function updateRankings(matchResults: any) {
+  function updateRankings(matchResults: any): LeagueRankings[] {
     const win = 3;
     const tie = 1;
     const loss = 0;
@@ -50,6 +50,7 @@ export function createTeamRankings() {
 
     updateTeamRank(matchResults.teamOneName, teamOneResult);
     updateTeamRank(matchResults.teamTwoName, teamTwoResult);
+    return leagueRankings;
   }
 
   function updateTeamRank(teamName: string, teamResult: number) {
@@ -63,6 +64,7 @@ export function createTeamRankings() {
         totalPoints: teamResult
       })
     }
+    return leagueRankings;
   }
 
   function printRankings(currentDay: number) {
