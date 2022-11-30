@@ -1,4 +1,4 @@
-import { isValidLine } from '../src/FileProcessor';
+import { isValidLine } from '../FileProcessor';
 
 describe('Helper methods to assist with logic for the Match Day', () => {
   const validLines = ['San Jose Earthquakes 1, Felton Lumberjacks 4', 'Aptos FC 2, Monterey United 0', 'Capitola Seahorses 0, Santa Cruz Slugs 0'];

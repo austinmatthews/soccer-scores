@@ -1,4 +1,4 @@
-import { createMatchDay, createTeamRankings, getMatch } from '../src/Utilities';
+import { createMatchDay, createTeamRankings, getMatch } from '../Utilities';
 
 describe('Testing helper methods to assist with logic for the Match Day', () => {
   const matchDay = createMatchDay();
