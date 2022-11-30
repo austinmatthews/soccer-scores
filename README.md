@@ -76,6 +76,14 @@ I factored the script into three main sections
     - GetMatch takes in each line from the file and executes the regex with it 
         - Team names and scores are collected with regex groups
 
+# Testing
+Created unit tests for Utilities and FileProcessor functions
+
+I decided not to add tests for index since it really only calls out to other functions that were unit tested
+
+Run tests with the following command:
+`npm run test`
+
 # Issues
 
 I had yet to develop in Typescript specifically, so I took a shot at it. It went pretty smoothly except for needing to use `any` in a few spots, which removed type safety.
