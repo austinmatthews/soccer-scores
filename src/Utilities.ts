@@ -1,36 +1,32 @@
 export function createMatchDay() {
-  let teamsPlayed = new Array();
-  let currentDay = 1;
+  let teamsPlayed: any[] = [];
 
-  function haveTeamsPlayedToday(matchResult: any): Boolean {
-    if (teamsPlayed.includes(matchResult.teamOneName, matchResult.teamTwoName))
+  function haveTeamsPlayedToday(matchResult: any): boolean {
+    if (teamsPlayed.includes(matchResult.teamOneName) || teamsPlayed.includes(matchResult.teamTwoName))
       return true;
     else {
-      teamsPlayed.push(matchResult.teamOneName, matchResult.teamOneName)
+      teamsPlayed.push(matchResult.teamOneName, matchResult.teamTwoName)
       return false;
     }
   }
 
   function endDay() {
-    currentDay++;
-    teamsPlayed = new Array();
+    teamsPlayed = [];
   }
 
   return {
     haveTeamsPlayedToday,
     endDay,
-    currentDay
   };
 }
 
-// the exported function is what other modules will have access to
 export type LeagueRankings = {
   teamName: string;
   totalPoints: number;
 };
 
 export function createTeamRankings() {
-  let leagueRankings = new Array<LeagueRankings>()
+  const leagueRankings = new Array<LeagueRankings>()
 
   function updateRankings(matchResults: any) {
     const win = 3;
@@ -58,8 +54,8 @@ export function createTeamRankings() {
   }
 
   function updateTeamRank(teamName: string, teamResult: number) {
-    var index = leagueRankings.findIndex(lr => lr.teamName == teamName);
-    if (index) {
+    const index = leagueRankings.findIndex(lr => lr.teamName == teamName);
+    if (index > -1) {
       leagueRankings[index].totalPoints += teamResult
     }
     else {
@@ -72,12 +68,11 @@ export function createTeamRankings() {
 
   function printRankings(currentDay: number) {
     leagueRankings.sort((a, b) => {
-      return b.totalPoints - a.totalPoints;
+      return b.totalPoints - a.totalPoints || a.teamName.localeCompare(b.teamName);
     });
-    leagueRankings.slice(0,3);
 
-    console.log(`Matchday ${currentDay}`);
-    leagueRankings.forEach(lr => {
+    console.log(`\nMatchday ${currentDay}`);
+    leagueRankings.slice(0, 3).forEach(lr => {
       console.log(`${lr.teamName}, ${lr.totalPoints} pts`)
     });
   }
@@ -89,27 +84,25 @@ export function createTeamRankings() {
 }
 
 export function getMatch() {
-  var constants = getConstants();
+  const constants = getConstants();
 
   function getResult(matchData: string) {
     const groups = constants.validMatchRegex.exec(matchData);
 
-    if (groups?.length === 4) {
+    if (groups?.length === 5) {
       return {
-        teamOneName: groups?.at(0),
-        teamOneScore: groups?.at(1),
-        teamTwoName: groups?.at(2),
-        teamTwoScore: groups?.at(3)
+        teamOneName: groups.at(1)?.trimEnd(),
+        teamOneScore: groups.at(2),
+        teamTwoName: groups.at(3)?.trimEnd(),
+        teamTwoScore: groups.at(4)
       };
     }
-
     return null;
   }
 
   return {
     getResult
   };
-
 }
 
 export function getConstants() {

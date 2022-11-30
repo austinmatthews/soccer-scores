@@ -4,9 +4,10 @@ import fs from 'fs';
 import events from 'events';
 
 export async function processFile(filePath: string) {
-    
-    let matchDay = createMatchDay();
-    let teamRankings = createTeamRankings();
+
+    let dayCount = 1;
+    const matchDay = createMatchDay();
+    const teamRankings = createTeamRankings();
     const constants = getConstants();
 
     try {
@@ -17,28 +18,28 @@ export async function processFile(filePath: string) {
 
         readFileLine.on('line', (line) => {
             if (constants.validMatchRegex.test(line)) {
-                console.log(line);
-                let match = getMatch();
-                let matchResult = match.getResult(line);
-                
-                if(matchResult){
-                    if(!matchDay.haveTeamsPlayedToday(matchResult)){
-                        teamRankings.printRankings(matchDay.currentDay)
+                const match = getMatch();
+                const matchResult = match.getResult(line);
+
+                if (matchResult) {
+                    if (matchDay.haveTeamsPlayedToday(matchResult)) {
+
+                        teamRankings.printRankings(dayCount)
                         matchDay.endDay();
+                        dayCount++;
                     }
-                    else{
-                        teamRankings.updateRankings(matchResult);
-                    }
+                    teamRankings.updateRankings(matchResult);
                 }
             }
-            else{
-                console.log(`Line [${line}] is invalid, skipping...`)
+            else {
+                console.log(`\nLine [${line}] is invalid, skipping...\n`)
             }
-        });
+        }).on('close', () => teamRankings.printRankings(dayCount));
+
 
         await events.once(readFileLine, 'close');
 
     } catch (err) {
         console.error(err);
     }
-};
+}
