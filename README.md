@@ -27,6 +27,10 @@ Run the script with arguments using the following format:
 
 `npm run start:ts-node -- <filepath>`
 
+Run the script with stdin (pipe or redirect) with the following format or an equivalent command:
+
+`echo <filepath> | npm run start:ts-node`
+
 You may also compile and run separately with the following commands:
 
 To compile: 
@@ -36,10 +40,6 @@ To compile:
 To run: 
 
 `npm run start -- <filepath>`
-
-Run the script with stdin (pipe or redirect) with the following format or an equivalent command:
-
-`echo <filepath> | npm run start:ts-node`
 
 To run tests with the following command:
 
@@ -78,6 +78,6 @@ I factored the script into three main sections
 
 # Issues
 
-I have yet to develop in Typescript specifically, so I took a shot at it. It went pretty smoothly except for needing to use `any` in a few spots, which removed type safety.
+I had yet to develop in Typescript specifically, so I took a shot at it. It went pretty smoothly except for needing to use `any` in a few spots, which removed type safety.
 
-If there is an invalid line, I prompt the user that it is invalid, but the script continues to run and simply skips invalid lines.
+If there is an invalid line, I prompt the user that it is invalid, but the script continues to run and simply skips invalid lines. In production code I would exit more gracefully in production code, but chose this method for the sake of the exercise.
