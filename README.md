@@ -80,4 +80,4 @@ I factored the script into three main sections
 
 I have yet to develop in Typescript specifically, so I took a shot at it. It went pretty smoothly except for needing to use `any` in a few spots, which removed type safety.
 
-If there is an invalid line, I prompt the user that it is invalid, but the script continues to run and simply skips invalid lines.
+If there is an invalid line, I prompt the user that it is invalid, but the script continues to run and simply skips invalid lines. In production code I would exit more gracefully in production code, but chose this method for the sake of the exercise.
